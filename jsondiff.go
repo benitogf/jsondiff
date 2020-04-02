@@ -8,15 +8,22 @@ import (
 	"strconv"
 )
 
+// Difference type ?
 type Difference int
 
 const (
+	// FullMatch enum
 	FullMatch Difference = iota
+	// SupersetMatch enum
 	SupersetMatch
+	// NoMatch enum
 	NoMatch
-	FirstArgIsInvalidJson
-	SecondArgIsInvalidJson
-	BothArgsAreInvalidJson
+	// FirstArgIsInvalidJSON enum
+	FirstArgIsInvalidJSON
+	// SecondArgIsInvalidJSON enum
+	SecondArgIsInvalidJSON
+	// BothArgsAreInvalidJSON enum
+	BothArgsAreInvalidJSON
 )
 
 func (d Difference) String() string {
@@ -27,21 +34,23 @@ func (d Difference) String() string {
 		return "SupersetMatch"
 	case NoMatch:
 		return "NoMatch"
-	case FirstArgIsInvalidJson:
-		return "FirstArgIsInvalidJson"
-	case SecondArgIsInvalidJson:
-		return "SecondArgIsInvalidJson"
-	case BothArgsAreInvalidJson:
-		return "BothArgsAreInvalidJson"
+	case FirstArgIsInvalidJSON:
+		return "FirstArgIsInvalidJSON"
+	case SecondArgIsInvalidJSON:
+		return "SecondArgIsInvalidJSON"
+	case BothArgsAreInvalidJSON:
+		return "BothArgsAreInvalidJSON"
 	}
 	return "Invalid"
 }
 
+// Tag range
 type Tag struct {
 	Begin string
 	End   string
 }
 
+// Options ...
 type Options struct {
 	Normal     Tag
 	Added      Tag
@@ -52,7 +61,7 @@ type Options struct {
 	PrintTypes bool
 }
 
-// Provides a set of options that are well suited for console output. Options
+// DefaultConsoleOptions Provides a set of options that are well suited for console output. Options
 // use ANSI foreground color escape sequences to highlight changes.
 func DefaultConsoleOptions() Options {
 	return Options{
@@ -63,7 +72,7 @@ func DefaultConsoleOptions() Options {
 	}
 }
 
-// Provides a set of options that are well suited for HTML output. Works best
+// DefaultHTMLOptions Provides a set of options that are well suited for HTML output. Works best
 // inside <pre> tag.
 func DefaultHTMLOptions() Options {
 	return Options{
@@ -353,7 +362,7 @@ func (ctx *context) printDiff(a, b interface{}) {
 	ctx.result(FullMatch)
 }
 
-// Compares two JSON documents using given options. Returns difference type and
+// Compare two JSON documents using given options. Returns difference type and
 // a string describing differences.
 //
 // FullMatch means provided arguments are deeply equal.
@@ -387,13 +396,13 @@ func Compare(a, b []byte, opts *Options) (Difference, string) {
 	errA := da.Decode(&av)
 	errB := db.Decode(&bv)
 	if errA != nil && errB != nil {
-		return BothArgsAreInvalidJson, "both arguments are invalid json"
+		return BothArgsAreInvalidJSON, "both arguments are invalid json"
 	}
 	if errA != nil {
-		return FirstArgIsInvalidJson, "first argument is invalid json"
+		return FirstArgIsInvalidJSON, "first argument is invalid json"
 	}
 	if errB != nil {
-		return SecondArgIsInvalidJson, "second argument is invalid json"
+		return SecondArgIsInvalidJSON, "second argument is invalid json"
 	}
 
 	ctx := context{opts: opts}
