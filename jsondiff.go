@@ -2,10 +2,11 @@ package jsondiff
 
 import (
 	"bytes"
-	"encoding/json"
 	"reflect"
 	"sort"
 	"strconv"
+
+	"github.com/goccy/go-json"
 )
 
 // Difference type ?
@@ -372,11 +373,11 @@ func (ctx *context) printDiff(a, b interface{}) {
 // hierarchy which don't match exactly, it must be a superset of another one.
 // For example:
 //
-//     {"a": 123, "b": 456, "c": [7, 8, 9]}
+//	{"a": 123, "b": 456, "c": [7, 8, 9]}
 //
 // Is a superset of:
 //
-//     {"a": 123, "c": [7, 8]}
+//	{"a": 123, "c": [7, 8]}
 //
 // NoMatch means there is no match.
 //
