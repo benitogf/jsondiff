@@ -1,2 +1,2 @@
-github.com/goccy/go-json v0.9.11 h1:/pAaQDLHEoCq/5FFmSKBswWmK6H0e8g4159Kc/X/nqk=
-github.com/goccy/go-json v0.9.11/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
+github.com/benitogf/go-json v0.0.0-20260410172501-727f5690408b h1:EXDsF3gMYyR8ipJsGuyHB4d3+XovPT8d4UM6cfBII14=
+github.com/benitogf/go-json v0.0.0-20260410172501-727f5690408b/go.mod h1:bv78ZxbWzHLAwEcSgQNjDUVgl3F4nOuYln98xHfUyjw=

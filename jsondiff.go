@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/goccy/go-json"
+	"github.com/benitogf/go-json"
 )
 
 // Difference type ?
